@@ -10,14 +10,14 @@ const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-  const isUser = true;
+  const { data: session } = useSession();
 
   useEffect(() => {
-    const setProviders = async () => {
+    const setUpProviders = async () => {
       const response = await getProviders();
       setProviders(response);
     };
-    setProviders();
+    setUpProviders();
   }, []);
 
   return (
@@ -35,7 +35,7 @@ const Nav = () => {
       </Link>
 
       <div className="hidden sm:flex">
-        {isUser ? (
+        {session?.user ? (
           <div className=" flex justify-center gap-2">
             <Link
               href={"/create-prompt"}
@@ -87,7 +87,7 @@ const Nav = () => {
       {/* mobile navigation */}
 
       <div className="flex relative sm:hidden">
-        {isUser ? (
+        {session?.user ? (
           <div className=" flex justify-center gap-2">
             <Image
               src={"/assets/images/logo.svg"}
