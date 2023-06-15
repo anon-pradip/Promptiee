@@ -60,7 +60,7 @@ const Nav = () => {
 
             <Link href={"/profile"}>
               <Image
-                src={"/assets/images/logo.svg"}
+                src={session?.user?.image}
                 height={37}
                 width={37}
                 alt="Prfile-Pic"
@@ -90,7 +90,7 @@ const Nav = () => {
         {session?.user ? (
           <div className=" flex justify-center gap-2">
             <Image
-              src={"/assets/images/logo.svg"}
+              src={session?.user?.image}
               height={37}
               width={37}
               alt="Prfile-Pic"
