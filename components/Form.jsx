@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
@@ -11,7 +12,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         imagination run wild with any AI powered platform.
       </h2>
 
-      <form className=" mt-10">
+      <form className=" mt-10" onSubmit={handleSubmit}>
         <label htmlFor="prompt" className="block mb-2 font-bold">
           Your AI prompt
         </label>
@@ -21,6 +22,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           rows={6}
           className="resize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Write your prompt..."
+          value={post.prompt}
+          onChange={(e) => setPost({ ...post, prompt: e.target.value })}
         ></textarea>
 
         <label htmlFor="tag" className="block mt-5 mb-2 font-bold">
@@ -29,7 +32,24 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         <input
           className="resize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
           placeholder="#tag"
+          value={post.tag}
+          onChange={(e) => setPost({ ...post, tag: e.target.value })}
         />
+        <div className=" mt-4 w-full flex justify-end gap-5 items-center">
+          <Link
+            href={"/"}
+            className="px-3 py-1 border border-slate-500 rounded-md"
+          >
+            Cancel
+          </Link>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="px-3 py-1 bg-blue-800 text-white rounded-md"
+          >
+            {submitting ? `${type}...` : type}
+          </button>
+        </div>
       </form>
     </section>
   );
