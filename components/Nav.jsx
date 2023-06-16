@@ -11,6 +11,7 @@ const Nav = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   const { data: session } = useSession();
+  console.log(session);
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -73,6 +74,7 @@ const Nav = () => {
             {providers &&
               Object.values(providers).map((provider) => (
                 <button
+                  key={provider.id}
                   type="button"
                   onClick={() => signIn(provider.id)}
                   className=" bg-black border border-black text-white hover:bg-transparent hover:text-black rounded-2xl px-3 py-2"
@@ -139,6 +141,7 @@ const Nav = () => {
             {providers &&
               Object.values(providers).map((provider) => (
                 <button
+                  key={provider.id}
                   type="button"
                   onClick={() => signIn(provider.id)}
                   className=" bg-black border border-black text-white hover:bg-transparent hover:text-black rounded-2xl px-3 py-2"
