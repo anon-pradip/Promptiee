@@ -6,7 +6,7 @@ import React, { useState } from "react";
 
 const CreatePrompt = () => {
   const [submitting, setSubmitting] = useState(false);
-  const router = useRouter;
+  const router = useRouter();
 
   const [post, setPost] = useState({
     prompt: "",
@@ -29,6 +29,10 @@ const CreatePrompt = () => {
 
       if (response.ok) {
         router.push("/");
+        setPost({
+          prompt: "",
+          tag: "",
+        });
       }
     } catch (error) {
       console.log(error);
