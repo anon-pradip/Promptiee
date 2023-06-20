@@ -8,6 +8,13 @@ const PromptCard = ({
   handleDeleteClick,
 }) => {
   const [copied, setCopied] = useState("");
+
+  const handleCopy = () => {
+    setCopied(post.prompt);
+    navigator.clipboard.writeText(post.prompt);
+    setTimeout(() => setCopied(""), 3000);
+  };
+
   console.log(post);
   return (
     <div className="bg-slate-100 border shadow-xl rounded-md p-2">
@@ -24,7 +31,7 @@ const PromptCard = ({
           <p className="break-words font-semibold">{post.creator.username}</p>
           <p className="break-all">{post.creator.email}</p>
         </div>
-        <div className="cursor-pointer" onClick={() => {}}>
+        <div className="cursor-pointer" onClick={handleCopy}>
           <Image
             src={
               copied === post.prompt
